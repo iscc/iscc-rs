@@ -21,6 +21,11 @@ fn test_meta_id() {
 
     let (mid2, _, _) = meta_id(" Die unéndlíche,  Geschichte ", "");
     assert_eq!(mid1, mid2);
+
+    let (mid, title, extra) = meta_id("Iñtërnâtiônàlizætiøn☃", "");
+    assert_eq!(mid, "CCdgqVLHSeBDp");
+    assert_eq!(title, "internationalizætiøn☃");
+    assert_eq!(extra, "")
 }
 
 #[test]

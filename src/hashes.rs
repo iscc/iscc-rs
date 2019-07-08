@@ -22,13 +22,15 @@ pub fn minimum_hash(features: Vec<u32>, n: usize) -> Vec<u32> {
 
 pub fn sliding_window(seq: &str, width: usize) -> Vec<String> {
     assert!(width >= 2, "Sliding window width must be 2 or bigger.");
-    if seq.len() <= width {
+    let characters: Vec<char> = seq.chars().collect();
+    let characters_len = characters.len();
+    if characters_len <= width {
         return vec![seq.to_string()];
     }
-    let max_idx = seq.len() - width;
+    let max_idx = characters_len - width;
     let mut result: Vec<String> = Vec::new();
     for i in 0..=max_idx {
-        result.push(seq[i..i + width].to_string())
+        result.push(characters[i..i + width].iter().collect())
     }
     result
 }
