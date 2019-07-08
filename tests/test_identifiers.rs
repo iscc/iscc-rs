@@ -1,12 +1,4 @@
-use std::path::PathBuf;
-
 use iscc_rs::{content_id_image, content_id_mixed, content_id_text, data_id, instance_id, meta_id};
-
-/// Returns the path of a given file in the test_data directory.
-fn get_path(filename: &str) -> String {
-    let testdata_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/test_data/");
-    format!("{}{}", testdata_dir.to_str().unwrap(), filename)
-}
 
 #[test]
 fn test_meta_id() {
@@ -39,10 +31,10 @@ fn test_content_id_text() {
 
 #[test]
 fn test_content_id_image() {
-    let cid_i = content_id_image(&get_path("lenna.jpg"), false).unwrap();
+    let cid_i = content_id_image("tests/test_data/lenna.jpg", false).unwrap();
     assert_eq!(cid_i, "CYmLoqBRgV32u");
 
-    let cid_i = content_id_image(&get_path("lenna.jpg"), true).unwrap();
+    let cid_i = content_id_image("tests/test_data/lenna.jpg", true).unwrap();
     assert_eq!(cid_i, "CimLoqBRgV32u");
 }
 
@@ -57,7 +49,7 @@ fn test_content_id_mixed() {
     let cid_m = content_id_mixed(&[&cid_t_1, &cid_t_2], false);
     assert_eq!(cid_m, "CM3kHkNRGvnhB".to_string());
 
-    let cid_i = content_id_image(&get_path("lenna.jpg"), false).unwrap();
+    let cid_i = content_id_image("tests/test_data/lenna.jpg", false).unwrap();
     let cid_m = content_id_mixed(&[&cid_t_1, &cid_t_2, &cid_i], false);
     assert_eq!(cid_m, "CM3hswzATv9d3".to_string());
 }
@@ -65,15 +57,15 @@ fn test_content_id_mixed() {
 #[test]
 fn test_data_id() {
     assert_eq!(
-        data_id(&get_path("cat.jpg")).unwrap(),
+        data_id("tests/test_data/cat.jpg").unwrap(),
         "CDC7Lg4oHA8DC".to_string()
     );
     assert_eq!(
-        data_id(&get_path("cat.png")).unwrap(),
+        data_id("tests/test_data/cat.png").unwrap(),
         "CDCx1AzhDGcT7".to_string()
     );
     assert_eq!(
-        data_id(&get_path("cat.gif")).unwrap(),
+        data_id("tests/test_data/cat.gif").unwrap(),
         "CDcLVF7es2AEP".to_string()
     );
 }
@@ -81,21 +73,21 @@ fn test_data_id() {
 #[test]
 fn test_instance_id() {
     assert_eq!(
-        instance_id(&get_path("cat.jpg")).unwrap(),
+        instance_id("tests/test_data/cat.jpg").unwrap(),
         (
             "CRLdd9g4BSUyY".to_string(),
             "f8e5e94f953709ae8930220da8bada303a370a46157a5cdd50ad2476a7f51e42".to_string()
         )
     );
     assert_eq!(
-        instance_id(&get_path("cat.png")).unwrap(),
+        instance_id("tests/test_data/cat.png").unwrap(),
         (
             "CR6xpnrJkvQDH".to_string(),
             "23a5b78a044143b612a0d033384a5ebf95343ec812c3e62caff393852d0328a0".to_string()
         )
     );
     assert_eq!(
-        instance_id(&get_path("cat.gif")).unwrap(),
+        instance_id("tests/test_data/cat.gif").unwrap(),
         (
             "CR167E86HPsZV".to_string(),
             "424a89d97aa978363b76071510949bf3b3424f3c6d394ccde93d7fa62ced066a".to_string()

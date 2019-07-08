@@ -16,3 +16,7 @@ sha2 = "0.8"
 unic-ucd-category = "0.9"
 unicode-normalization = "0.1"
 xxhash2 = "0.1"
+
+[dev-dependencies]
+serde_json = "1.0"
+serde = "1.0"
