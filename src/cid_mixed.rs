@@ -1,9 +1,18 @@
+//! Content-ID-Mixed
+
 use crate::base58;
 use crate::hashes::similarity_hash;
 
 const HEAD_CID_M: u8 = 0x18;
 const HEAD_CID_M_PCF: u8 = 0x19;
 
+/// The Content-ID-Mixed aggregates multiple Content-IDs of the same or
+/// different types. It may be used for digital media objects that embed
+/// multiples types of media or for collections of contents of the same type.
+///
+/// * `partial` - The last bit of the header byte of the Content-ID is the
+///   "Partial Content Flag". It designates if the Content-ID applies to the
+///   full content or just some part of it.
 pub fn content_id_mixed(cids: &[&str], partial: bool) -> String {
     let decoded: Vec<Vec<u8>> = cids.iter().map(|cid| base58::decode(cid)).collect();
 

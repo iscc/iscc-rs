@@ -1,3 +1,4 @@
+//! Content Normalization
 use unic_ucd_category::GeneralCategory;
 use unicode_normalization::UnicodeNormalization;
 

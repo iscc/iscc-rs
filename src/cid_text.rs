@@ -1,3 +1,4 @@
+//! Content-ID-Text
 use bit_vec::BitVec;
 use itertools::Itertools;
 
@@ -12,6 +13,11 @@ const WINDOW_SIZE_CID_T: usize = 13;
 const HEAD_CID_T: u8 = 0x10;
 const HEAD_CID_T_PCF: u8 = 0x11;
 
+/// Generates the id from extracted and normalized plain-text
+///
+/// * `partial` - The last bit of the header byte of the Content-ID is the
+///   "Partial Content Flag". It designates if the Content-ID applies to the
+///   full content or just some part of it.
 pub fn content_id_text(text: &str, partial: bool) -> String {
     let text = text_normalize(text, false);
 

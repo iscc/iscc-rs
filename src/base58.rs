@@ -1,3 +1,13 @@
+/*!
+Base58-ISCC
+
+The ISCC uses a custom per-component data encoding similar to the
+[zbase62](https://github.com/simplegeo/zbase62) encoding by [Zooko
+Wilcox-O'Hearn](https://en.wikipedia.org/wiki/Zooko_Wilcox-O%27Hearn) but
+with a 58-character symbol table.
+
+`SYMBOLS = "C23456789rB1ZEFGTtYiAaVvMmHUPWXKDNbcdefghLjkSnopRqsJuQwxyz"`
+ */
 const SYMBOLS: [char; 58] = [
     'C', '2', '3', '4', '5', '6', '7', '8', '9', 'r', 'B', '1', 'Z', 'E', 'F', 'G', 'T', 't', 'Y',
     'i', 'A', 'a', 'V', 'v', 'M', 'm', 'H', 'U', 'P', 'W', 'X', 'K', 'D', 'N', 'b', 'c', 'd', 'e',

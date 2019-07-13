@@ -1,3 +1,4 @@
+//! Content-ID Image
 use bit_vec::BitVec;
 use image::{FilterType, ImageResult};
 
@@ -6,6 +7,11 @@ use crate::base58::encode;
 const HEAD_CID_I: u8 = 0x12;
 const HEAD_CID_I_PCF: u8 = 0x13;
 
+/// Generates the id from normalized grayscale pixel data
+///
+/// * `partial` - The last bit of the header byte of the Content-ID is the
+///   "Partial Content Flag". It designates if the Content-ID applies to the
+///   full content or just some part of it.
 pub fn content_id_image(img_path: &str, partial: bool) -> ImageResult<String> {
     let pixels = image_normalize(img_path)?;
     let hash_digest = image_hash(&pixels);
@@ -84,12 +90,12 @@ fn median(xs: &[f64]) -> f64 {
     }
 }
 
-/// Discrete cosine transform algorithm by Project Nayuki. (MIT License)
-/// See: https://www.nayuki.io/page/fast-discrete-cosine-transform-algorithms
-///
 /// Computes the unscaled DCT type II on the specified array in place.
 /// The array length must be a power of 2.
 /// For the formula, see https://en.wikipedia.org/wiki/Discrete_cosine_transform#DCT-II .
+///
+/// Discrete cosine transform algorithm by Project Nayuki. (MIT License)
+/// See: https://www.nayuki.io/page/fast-discrete-cosine-transform-algorithms
 pub fn dct(vector: &mut [f64]) {
     // TODO: Try https://github.com/ejmahler/rust_dct
     let n: usize = vector.len();

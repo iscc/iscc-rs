@@ -1,3 +1,4 @@
+//! Meta-ID
 use crate::base58::encode;
 use crate::hashes::{similarity_hash, sliding_window};
 use crate::normalization::text_normalize;
@@ -6,6 +7,18 @@ const WINDOW_SIZE_MID: usize = 4;
 const HEAD_MID: u8 = 0x00;
 const INPUT_TRIM: usize = 128;
 
+/// The Meta-ID component starts with a 1-byte header `00000000`. The first
+/// nibble `0000` indicates that this is a Meta-ID component type. The second
+/// nibble is reserved for future extended features of the Meta-ID.
+///
+/// The Meta-ID body is built from a 64-bit `similarity_hash` over 4-character
+/// n-grams of the basic metadata of the content to be identified.  The basic
+/// metadata supplied to the Meta-ID generating function is assumed to be UTF-8
+/// encoded.
+///
+/// * `title` - The title of an intangible creation.
+/// * `extra` - An optional short statement that distinguishes this intangible
+///   creation from another one for the purpose of forced Meta-ID uniqueness.
 pub fn meta_id(title: &str, extra: &str) -> (String, String, String) {
     let title_norm = text_normalize(title, true);
     let extra_norm = text_normalize(extra, true);

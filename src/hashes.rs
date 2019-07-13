@@ -1,3 +1,4 @@
+//! Feature Hashing
 use crate::constants::MINHASH_PERMUTATIONS;
 
 /// The `minimum_hash` function takes an arbitrary sized set of 32-bit integer

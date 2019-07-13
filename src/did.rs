@@ -1,3 +1,4 @@
+//! Data-ID
 use std::fs::File;
 use std::io::Read;
 
@@ -22,6 +23,9 @@ const GEAR2_MASK2: u64 = 0x0000_D900_0353_0000;
 // Component Header
 const HEAD_DID: u8 = 0x20;
 
+/// For the Data-ID that encodes data similarity we use a content defined
+/// chunking algorithm that provides some shift resistance and calculate the
+/// MinHash from those chunks.
 pub fn data_id(data_path: &str) -> std::io::Result<String> {
     let data = File::open(data_path)?;
 

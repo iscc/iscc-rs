@@ -1,3 +1,4 @@
+//! Instance-ID
 use std::fs::File;
 use std::io::Read;
 
@@ -9,6 +10,11 @@ use crate::base58;
 // Component Headers
 const HEAD_IID: u8 = 0x30;
 
+/// The Instance-ID is built from the raw data of the media object to be
+/// identified and serves as checksum for the media object. The raw data of the
+/// media object is split into 64-kB data-chunks. Then we build a hash-tree from
+/// those chunks and use the truncated tophash (merkle root) as component body
+/// of the Instance-ID.
 pub fn instance_id(data_path: &str) -> std::io::Result<(String, String)> {
     let mut data = File::open(data_path)?;
     let mut leaf_node_digests: Vec<Vec<u8>> = Vec::new();
