@@ -4,7 +4,7 @@ use std::path::PathBuf;
 
 use serde_json as json;
 
-use iscc_rs::{content_id_image, content_id_mixed, content_id_text, data_id, instance_id, meta_id};
+use iscc::{content_id_image, content_id_mixed, content_id_text, data_id, instance_id, meta_id};
 
 /// Returns the path of a given file in the test_data directory.
 fn get_path(filename: &str) -> String {

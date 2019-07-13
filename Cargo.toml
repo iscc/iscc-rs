@@ -6,7 +6,7 @@ edition = "2018"
 readme = "README.md"
 
 [lib]
-name = "iscc_rs"
+name = "iscc"
 
 [dependencies]
 bit-vec = "0.6"

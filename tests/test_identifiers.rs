@@ -1,4 +1,4 @@
-use iscc_rs::{content_id_image, content_id_mixed, content_id_text, data_id, instance_id, meta_id};
+use iscc::{content_id_image, content_id_mixed, content_id_text, data_id, instance_id, meta_id};
 
 #[test]
 fn test_meta_id() {

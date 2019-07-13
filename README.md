@@ -19,7 +19,7 @@ This example shows how to create an ISCC Code.
 use std::error::Error;
 use std::process;
 
-use iscc_rs::{content_id_text, data_id, instance_id, meta_id};
+use iscc::{content_id_text, data_id, instance_id, meta_id};
 
 fn example() -> Result<(), Box<dyn Error>> {
     // Generate ISCC Component Codes
