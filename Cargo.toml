@@ -2,8 +2,13 @@
 name = "iscc-rs"
 version = "0.1.0"
 authors = ["Alexander Niederbühl <a.niederbuehl@gmail.com>"]
+description = "Rust implementation of the ISCC specification"
+documentation = "https://docs.rs/iscc-rs"
+homepage = "https://iscc.codes"
+repository = "https://github.com/iscc/iscc-rs"
 edition = "2018"
 readme = "README.md"
+license = "MIT"
 include = [
     "**/*.rs",
     "Cargo.toml",
