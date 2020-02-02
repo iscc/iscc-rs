@@ -7,7 +7,8 @@ use ring::digest::{digest, SHA256};
 
 use crate::base58;
 
-const BUF_SIZE: usize = 20 * 1024 * 1024;
+const BUF_SIZE: usize = 64000;
+
 // Component Header
 const HEAD_IID: u8 = 0x30;
 
