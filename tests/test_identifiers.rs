@@ -93,4 +93,12 @@ fn test_instance_id() {
             "424a89d97aa978363b76071510949bf3b3424f3c6d394ccde93d7fa62ced066a".to_string()
         )
     );
+    //Test buffersize & odd-even tophash
+    assert_eq!(
+        instance_id("tests/test_data/test-70k.txt").unwrap(),
+        (
+            "CRiBu8LHYfxSv".to_string(),
+            "72b78ef708bf09dbedf8c4d9cfc2f5bea57f0c2d541421e1e6df5ea80d5d38c0".to_string()
+        )
+    );
 }
