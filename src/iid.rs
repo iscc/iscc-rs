@@ -3,7 +3,7 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 use hex;
-use ring::digest::{digest, SHA256};
+use sha2::{Digest, Sha256};
 
 use crate::base58;
 
@@ -64,8 +64,8 @@ fn hash_inner_nodes(a: &[u8], b: &[u8]) -> [u8; 32] {
 }
 
 pub fn sha256d(data: &[u8]) -> [u8; 32] {
-    let hash1 = digest(&SHA256, data);
-    let hash2 = digest(&SHA256, hash1.as_ref());
+    let hash1 = Sha256::digest(&data);
+    let hash2 = Sha256::digest(&hash1);
     let mut arr: [u8; 32] = Default::default();
     arr.copy_from_slice(hash2.as_ref());
     arr
